@@ -1,4 +1,4 @@
-name: Update Docker Image SpeedScope
+name: Check and Update Image
 
 on:
   schedule:
@@ -48,6 +48,12 @@ jobs:
           tags: |
             mortum5/speedscope:${{ steps.speedscope.outputs.release_tag }}
             mortum5/speedscope:latest
+      - name: Docker Hub Update Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
+            repository: peterevans/dockerhub-description
       - name: Commit new version
         if: steps.speedscope.outputs.release_tag != steps.speedscope.outputs.current_tag
         run: |
