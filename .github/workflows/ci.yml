@@ -53,7 +53,7 @@ jobs:
         with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
-            repository: peterevans/dockerhub-description
+            repository: mortum5/speedscope
       - name: Commit new version
         if: steps.speedscope.outputs.release_tag != steps.speedscope.outputs.current_tag
         run: |
