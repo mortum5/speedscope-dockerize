@@ -49,6 +49,7 @@ jobs:
             mortum5/speedscope:${{ steps.speedscope.outputs.release_tag }}
             mortum5/speedscope:latest
       - name: Docker Hub Update Description
+        if: steps.speedscope.outputs.release_tag != steps.speedscope.outputs.current_tag
         uses: peter-evans/dockerhub-description@v4
         with:
             username: ${{ secrets.DOCKERHUB_USERNAME }}
